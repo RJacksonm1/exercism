@@ -23,3 +23,18 @@ func BenchmarkHey(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkReduceToAlpha(b *testing.B) {
+	for _, tt := range testCases {
+		for i := 0; i < b.N; i++ {
+			reduceToAlpha(tt.input)
+		}
+	}
+}
+func BenchmarkReduceToAlphaRegexp(b *testing.B) {
+	for _, tt := range testCases {
+		for i := 0; i < b.N; i++ {
+			reduceToAlphaRegexp(tt.input)
+		}
+	}
+}

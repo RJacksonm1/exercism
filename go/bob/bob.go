@@ -1,15 +1,63 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package bob should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package bob provide everything needed to handle a lackadaisical teenager named Bob
 package bob
 
-// Hey should have a comment documenting it.
+import (
+	"bytes"
+	"log"
+	"regexp"
+	"strings"
+	"unicode"
+)
+
+// reduceToAlphaRegexp filters a string down to only alphanumeric chars
+func reduceToAlphaRegexp(s string) string {
+	reg, err := regexp.Compile("[^a-zA-Z]+")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return reg.ReplaceAllString(s, "")
+}
+
+// reduceToAlpha filters a string down to only alphanumeric chars
+func reduceToAlpha(s string) string {
+	var buffer bytes.Buffer
+
+	for _, c := range s {
+		if !unicode.IsLetter(c) {
+			continue
+		}
+
+		buffer.WriteRune(c)
+	}
+
+	return buffer.String()
+}
+
+// Hey handles bob's 💩
 func Hey(remark string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+	remark = strings.TrimSpace(remark)
+	empty := remark == ""
+	question := strings.HasSuffix(remark, "?")
+
+	// "yelling" if all alpha are caps
+	alphasFromRemark := reduceToAlpha(remark)
+	yelling := alphasFromRemark != "" && strings.ToUpper(remark) == remark
+
+	switch {
+	case empty:
+		return "Fine. Be that way!"
+
+	case yelling && question:
+		return "Calm down, I know what I'm doing!"
+
+	case question:
+		return "Sure."
+
+	case yelling:
+		return "Whoa, chill out!"
+
+	default:
+		return "Whatever."
+	}
 }
