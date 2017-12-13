@@ -1,6 +1,17 @@
 package raindrops
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
+
+func TestFactors(t *testing.T) {
+	for _, test := range factorTests {
+		if actual := Factors(test.input); !reflect.DeepEqual(actual, test.expected) && test.input != 1 {
+			t.Errorf("Factors(%d) = %d, expected %d.", test.input, actual, test.expected)
+		}
+	}
+}
 
 func TestConvert(t *testing.T) {
 	for _, test := range tests {

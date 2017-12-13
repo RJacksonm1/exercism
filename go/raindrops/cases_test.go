@@ -27,3 +27,19 @@ var tests = []struct {
 	{105, "PlingPlangPlong"},
 	{3125, "Plang"},
 }
+
+var factorTests = []struct {
+	input    int
+	expected []int
+}{
+	{1, []int{}},
+	{3, []int{3}},
+	{5, []int{5}},
+	{7, []int{7}},
+	{6, []int{2, 3}},
+	{8, []int{2}},
+	{9, []int{3}},
+	{10, []int{2, 5}},
+	{14, []int{2, 7}},
+	{15, []int{3, 5}},
+}
