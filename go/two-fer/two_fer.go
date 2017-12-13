@@ -1,15 +1,18 @@
-// This is a "stub" file.  It's a little start on your solution.
-// It's not a complete solution though; you have to write some code.
-
-// Package twofer should have a package comment that summarizes what it's about.
-// https://golang.org/doc/effective_go.html#commentary
+// Package twofer facilitates sharing 😉
 package twofer
 
-// ShareWith should have a comment documenting it.
-func ShareWith(string) string {
-	// Write some code here to pass the test suite.
-	// Then remove all the stock comments.
-	// They're here to help you get started but they only clutter a finished solution.
-	// If you leave them in, reviewers may protest!
-	return ""
+import (
+	"fmt"
+	"strings"
+)
+
+// ShareWith makes you share!
+func ShareWith(name string) string {
+	name = strings.TrimSpace(name)
+
+	if name == "" {
+		name = "you"
+	}
+
+	return fmt.Sprintf("One for %s, one for me.", name)
 }
