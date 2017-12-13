@@ -1,7 +1,7 @@
 goos: darwin
 goarch: amd64
-BenchmarkHey-4                   	  200000	      9008 ns/op
-BenchmarkReduceToAlpha-4         	  300000	      5387 ns/op
-BenchmarkReduceToAlphaRegexp-4   	   10000	    178044 ns/op
+BenchmarkHey-4                          	  200000	      8759 ns/op
+BenchmarkReduceToAlpha-4                	  300000	      5418 ns/op
+BenchmarkReduceToAlphaWithoutBuffer-4   	   50000	     23473 ns/op
 PASS
-ok  	_/Users/rjackson/exercism/go/bob	5.385s
+ok  	_/Users/rjackson/exercism/go/bob	4.959s

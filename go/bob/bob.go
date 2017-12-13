@@ -3,24 +3,13 @@ package bob
 
 import (
 	"bytes"
-	"log"
-	"regexp"
 	"strings"
 	"unicode"
 )
 
-// reduceToAlphaRegexp filters a string down to only alphanumeric chars
-func reduceToAlphaRegexp(s string) string {
-	reg, err := regexp.Compile("[^a-zA-Z]+")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return reg.ReplaceAllString(s, "")
-}
-
 // reduceToAlpha filters a string down to only alphanumeric chars
 func reduceToAlpha(s string) string {
+	// It's quicker to use a bytes buffer versus iteratively appending to a string. See benchmarks.txt
 	var buffer bytes.Buffer
 
 	for _, c := range s {
