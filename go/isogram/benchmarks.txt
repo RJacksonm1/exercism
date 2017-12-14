@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+BenchmarkIsIsogramWithReplace-4   	 1000000	      2002 ns/op
+BenchmarkIsIsogramWithBypass-4    	 1000000	      1666 ns/op
+PASS
+ok  	_/Users/rjackson/exercism/go/isogram	3.718s
