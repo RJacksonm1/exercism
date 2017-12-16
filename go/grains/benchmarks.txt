@@ -1,0 +1,6 @@
+goos: darwin
+goarch: amd64
+BenchmarkSquare-4   	200000000	         9.25 ns/op
+BenchmarkTotal-4    	2000000000	         0.68 ns/op
+PASS
+ok  	_/Users/rjackson/exercism/go/grains	4.225s
