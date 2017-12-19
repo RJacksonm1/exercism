@@ -13,22 +13,29 @@ func Frequency(s string) FreqMap {
 
 // ConcurrentFrequency counts a-b-c's faster thanks to the power of Modern Computing
 func ConcurrentFrequency(strings []string) FreqMap {
-	m := FreqMap{}
-	c := make(chan FreqMap, len(strings))
 
-	// Maps aren't concurrent safe, so we won't directly interact with `m`
-	// Instead, generate a map via Frequency for each string
-	for _, s := range strings {
-		go func(s string) {
-			c <- Frequency(s)
-		}(s)
+	switch len(strings) {
+	case 0:
+		return FreqMap{}
+
+	case 1:
+		return Frequency(strings[0])
 	}
 
-	// And then reduce to a single map
-	for range strings {
-		for r, i := range <-c {
-			m[r] += i
-		}
+	// Recursively divide-and-conquer
+	c := make(chan FreqMap, len(strings))
+
+	f := func(strings []string) {
+		c <- ConcurrentFrequency(strings)
+	}
+
+	half := len(strings) / 2
+	go f(strings[half:])
+	go f(strings[:half])
+
+	m := <-c
+	for r, c := range <-c {
+		m[r] += c
 	}
 
 	return m
