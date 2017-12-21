@@ -1,0 +1,7 @@
+goos: darwin
+goarch: amd64
+BenchmarkTwoTree-4       	     100	  15993951 ns/op
+BenchmarkTenTree-4       	    1000	   1565596 ns/op
+BenchmarkShallowTree-4   	    1000	   1526984 ns/op
+PASS
+ok  	_/Users/rjackson/exercism/go/tree-building	5.327s
