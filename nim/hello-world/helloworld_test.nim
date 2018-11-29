@@ -3,7 +3,7 @@ import unittest
 import helloworld
 
 suite "Hello World":
-  
+
   test "no name":
     check helloworld() == "Hello, World!"
 
