@@ -1,8 +1,8 @@
 package isogram
 
 // Source: exercism/problem-specifications
-// Commit: f9e0ebb isogram: Update canonical-data.json as in #919 (#920)
-// Problem Specifications Version: 1.2.0
+// Commit: 7cea153 isogram: add test case with same first and last character (#1308)
+// Problem Specifications Version: 1.6.0
 
 var testCases = []struct {
 	description string
@@ -25,6 +25,11 @@ var testCases = []struct {
 		expected:    false,
 	},
 	{
+		description: "word with one duplicated character from the end of the alphabet",
+		input:       "zzyzx",
+		expected:    false,
+	},
+	{
 		description: "longest reported english isogram",
 		input:       "subdermatoglyphic",
 		expected:    true,
@@ -32,6 +37,11 @@ var testCases = []struct {
 	{
 		description: "word with duplicated character in mixed case",
 		input:       "Alphabet",
+		expected:    false,
+	},
+	{
+		description: "word with duplicated character in mixed case, lowercase first",
+		input:       "alphAbet",
 		expected:    false,
 	},
 	{
@@ -52,6 +62,11 @@ var testCases = []struct {
 	{
 		description: "duplicated character in the middle",
 		input:       "accentor",
+		expected:    false,
+	},
+	{
+		description: "same first and last characters",
+		input:       "angola",
 		expected:    false,
 	},
 }

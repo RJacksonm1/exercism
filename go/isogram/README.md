@@ -2,13 +2,14 @@
 
 Determine if a word or phrase is an isogram.
 
-An isogram (also known as a "nonpattern word") is a word or phrase without a repeating letter.
+An isogram (also known as a "nonpattern word") is a word or phrase without a repeating letter, however spaces and hyphens are allowed to appear multiple times.
 
 Examples of isograms:
 
 - lumberjacks
 - background
 - downstream
+- six-year-old
 
 The word *isograms*, however, is not an isogram, because the s repeats.
 
@@ -16,10 +17,10 @@ The word *isograms*, however, is not an isogram, because the s repeats.
 
 To run the tests run the command `go test` from within the exercise directory.
 
-If the test suite contains benchmarks, you can run these with the `-bench`
-flag:
+If the test suite contains benchmarks, you can run these with the `--bench` and `--benchmem`
+flags:
 
-    go test -bench .
+    go test -v --bench . --benchmem
 
 Keep in mind that each reviewer will run benchmarks on a different machine, with
 different specs, so the results from these benchmark tests may vary.
@@ -27,7 +28,7 @@ different specs, so the results from these benchmark tests may vary.
 ## Further information
 
 For more detailed information about the Go track, including how to get help if
-you're having trouble, please visit the exercism.io [Go language page](http://exercism.io/languages/go/about).
+you're having trouble, please visit the exercism.io [Go language page](http://exercism.io/languages/go/resources).
 
 ## Source
 
