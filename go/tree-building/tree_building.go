@@ -6,19 +6,15 @@ import (
 	"sort"
 )
 
+// Record - A loose object, a collection of which is to be transformed into a beautiful tree 🌲
 type Record struct {
 	ID, Parent int
 }
 
+// Node - The various interconnected elements of a beautiful tree 🌲
 type Node struct {
 	ID       int
 	Children []*Node
-}
-
-type Mismatch struct{}
-
-func (m Mismatch) Error() string {
-	return "c"
 }
 
 // Build a tree
