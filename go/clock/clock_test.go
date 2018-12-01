@@ -11,9 +11,8 @@ import (
 // New(hour, minute int) Clock     // a "constructor"
 // (Clock) String() string         // a "stringer"
 // (Clock) Add(minutes int) Clock
+// (Clock) Subtract(minutes int) Clock
 //
-// The Add method should also handle subtraction by accepting negative values.
-
 // To satisfy the README requirement about clocks being equal, values of
 // your Clock type need to work with the == operator. This means that if your
 // New function returns a pointer rather than a value, your clocks will
@@ -44,13 +43,17 @@ func TestAddMinutes(t *testing.T) {
 				a.h, a.m, a.a, got, a.want)
 		}
 	}
+	t.Log(len(addTests), "test cases")
+}
+
+func TestSubtractMinutes(t *testing.T) {
 	for _, a := range subtractTests {
-		if got := New(a.h, a.m).Add(a.a); got.String() != a.want {
-			t.Fatalf("New(%d, %d).Add(%d) = %q, want %q",
+		if got := New(a.h, a.m).Subtract(a.a); got.String() != a.want {
+			t.Fatalf("New(%d, %d).Subtract(%d) = %q, want %q",
 				a.h, a.m, a.a, got, a.want)
 		}
 	}
-	t.Log(len(addTests), "test cases")
+	t.Log(len(subtractTests), "test cases")
 }
 
 func TestCompareClocks(t *testing.T) {
@@ -77,6 +80,16 @@ func BenchmarkAddMinutes(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		for _, a := range addTests {
 			c.Add(a.a)
+		}
+	}
+}
+
+func BenchmarkSubtractMinutes(b *testing.B) {
+	c := New(12, 0)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for _, a := range subtractTests {
+			c.Subtract(a.a)
 		}
 	}
 }

@@ -2,6 +2,7 @@
 // New(hour, minute int) Clock     // a "constructor"
 // (Clock) String() string         // a "stringer"
 // (Clock) Add(minutes int) Clock
+// (Clock) Subtract(minutes int) Clock
 
 package clock
 
@@ -36,6 +37,11 @@ func (c Clock) Add(minute int) Clock {
 	}
 
 	return Clock(seconds)
+}
+
+// Subtract minutes to the clock
+func (c Clock) Subtract(minute int) Clock {
+	return c.Add(-minute)
 }
 
 // String representation of the clock
