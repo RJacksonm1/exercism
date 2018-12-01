@@ -14,10 +14,24 @@ func TestIsIsogram(t *testing.T) {
 
 func BenchmarkIsIsogram(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-
 		for _, c := range testCases {
 			IsIsogram(c.input)
 		}
+	}
+}
 
+func BenchmarkIsIsogramWithSeenMap(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, c := range testCases {
+			IsIsogramWithSeenMap(c.input)
+		}
+	}
+}
+
+func BenchmarkIsIsogramWithSeenMapWithUnicodeLower(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		for _, c := range testCases {
+			IsIsogramWithSeenMapWithUnicodeLower(c.input)
+		}
 	}
 }

@@ -1,6 +1,21 @@
+=== RUN   TestIsIsogram
+--- PASS: TestIsIsogram (0.00s)
+    isogram_test.go:11: PASS: Word ""
+    isogram_test.go:11: PASS: Word "isogram"
+    isogram_test.go:11: PASS: Word "eleven"
+    isogram_test.go:11: PASS: Word "zzyzx"
+    isogram_test.go:11: PASS: Word "subdermatoglyphic"
+    isogram_test.go:11: PASS: Word "Alphabet"
+    isogram_test.go:11: PASS: Word "alphAbet"
+    isogram_test.go:11: PASS: Word "thumbscrew-japingly"
+    isogram_test.go:11: PASS: Word "six-year-old"
+    isogram_test.go:11: PASS: Word "Emily Jung Schwartzkopf"
+    isogram_test.go:11: PASS: Word "accentor"
+    isogram_test.go:11: PASS: Word "angola"
 goos: darwin
 goarch: amd64
-BenchmarkIsIsogramWithReplace-4   	 1000000	      2002 ns/op
-BenchmarkIsIsogramWithBypass-4    	 1000000	      1666 ns/op
+BenchmarkIsIsogram-4                              	 1000000	      1421 ns/op	      96 B/op	       6 allocs/op
+BenchmarkIsIsogramWithSeenMap-4                   	  300000	      5240 ns/op	     930 B/op	      11 allocs/op
+BenchmarkIsIsogramWithSeenMapWithUnicodeLower-4   	  300000	      4970 ns/op	     834 B/op	       5 allocs/op
 PASS
-ok  	_/Users/rjackson/exercism/go/isogram	3.718s
+ok  	_/Users/rjackson/exercism/go/isogram	4.610s
