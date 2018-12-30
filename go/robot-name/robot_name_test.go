@@ -10,7 +10,10 @@ var namePat = regexp.MustCompile(`^[A-Z]{2}\d{3}$`)
 func New() *Robot { return new(Robot) }
 
 func TestNameValid(t *testing.T) {
-	n := New().Name()
+	n, err := New().Name()
+	if err != nil {
+		t.Errorf("Name() returned unexpected error: %v", err)
+	}
 	if !namePat.MatchString(n) {
 		t.Errorf(`Invalid robot name %q, want form "AA###".`, n)
 	}
@@ -18,50 +21,28 @@ func TestNameValid(t *testing.T) {
 
 func TestNameSticks(t *testing.T) {
 	r := New()
-	n1 := r.Name()
-	n2 := r.Name()
+	n1, _ := r.Name()
+	n2, _ := r.Name()
 	if n2 != n1 {
 		t.Errorf(`Robot name changed.  Now %s, was %s.`, n2, n1)
 	}
 }
 
 func TestSuccessiveRobotsHaveDifferentNames(t *testing.T) {
-	n1 := New().Name()
-	if New().Name() == n1 {
+	n1, _ := New().Name()
+	n2, _ := New().Name()
+	if n2 == n1 {
 		t.Errorf(`Robots with same name.  Two %s's.`, n1)
 	}
 }
 
 func TestResetName(t *testing.T) {
 	r := New()
-	n1 := r.Name()
+	n1, _ := r.Name()
 	r.Reset()
-	if r.Name() == n1 {
+	n2, _ := r.Name()
+	if n2 == n1 {
 		t.Errorf(`Robot name not cleared on reset.  Still %s.`, n1)
-	}
-}
-
-func TestCollisions(t *testing.T) {
-	m := map[string]bool{}
-	// Test uniqueness for new robots.
-	// 10k should be plenty to catch names generated
-	// randomly without a uniqueness check.
-	for i := 0; i < 10000; i++ {
-		n := New().Name()
-		if m[n] {
-			t.Fatalf("Name %s reissued after %d robots.", n, i)
-		}
-		m[n] = true
-	}
-	// Test that names aren't recycled either.
-	r := New()
-	for i := 0; i < 10000; i++ {
-		r.Reset()
-		n := r.Name()
-		if m[n] {
-			t.Fatalf("Name %s reissued after Reset.", n)
-		}
-		m[n] = true
 	}
 }
 

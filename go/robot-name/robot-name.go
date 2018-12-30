@@ -13,13 +13,13 @@ type Robot struct {
 }
 
 // Name gives the roboto a name
-func (r *Robot) Name() string {
+func (r *Robot) Name() (string, error) {
 	if r.name == "" {
 		r.name = GenerateUniqueName()
 		assignedNames = append(assignedNames, r.name)
 	}
 
-	return r.name
+	return r.name, nil
 }
 
 // Reset clears the robot's name
