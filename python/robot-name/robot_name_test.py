@@ -1,5 +1,6 @@
 import unittest
 import random
+import string
 
 from robot_name import Robot
 
@@ -45,6 +46,12 @@ class RobotNameTest(unittest.TestCase):
         name2 = robot.name
         self.assertNotEqual(name, name2)
         self.assertRegex(name2, self.name_re)
+
+    def test_infinite_robots_throws_exception(self):
+        with self.assertRaises(Exception):
+            name_permutations = (len(string.ascii_uppercase) ** 2) * (len(string.digits) ** 3)
+            for _ in range(name_permutations + 1): # +1 just in case the stars _really_ align
+                Robot().name
 
 
 if __name__ == '__main__':
