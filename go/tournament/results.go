@@ -1,5 +1,6 @@
 package tournament
 
+// Results represents an individual team results within a tournament
 type Results struct {
 	team   string
 	wins   int
@@ -7,7 +8,7 @@ type Results struct {
 	draws  int
 }
 
-// Value of each outcome
+// Points-value of each outcome
 const (
 	WinPoints  int = 3
 	DrawPoints int = 1

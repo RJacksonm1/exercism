@@ -2,6 +2,7 @@ package tournament
 
 import "errors"
 
+// Match within a tournament
 type Match struct {
 	home   string
 	away   string
