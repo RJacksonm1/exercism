@@ -1,2 +1,2 @@
 def abbreviate(words):
-    pass
+    return "".join([word[0].upper() for word in words.replace('-', ' ').split()])
