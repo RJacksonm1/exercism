@@ -31,3 +31,8 @@
     ?assertMatch({error,
 		  "Only positive numbers are allowed"},
 		 collatz_conjecture:steps(-15)).
+
+'7_non_number_is_an_error_test'() ->
+    ?assertMatch({error,
+		  "Only positive numbers are allowed"},
+		 collatz_conjecture:steps("dave")).
